@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos de nous - Bibliothèque</title>
+    <style>
+        /* Style global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e; /* Fond noir */
+            color: white;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2C6B3C; /* Vert */
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            background-color: #333; /* Fond gris foncé */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content p {
+            font-size: 1.1rem;
+            color: #f8f9fa; /* Texte blanc */
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            color: #2C6B3C;
+            margin-top: 20px;
+        }
+
+        .btn-return {
+            background-color: #2C6B3C;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-return:hover {
+            background-color: #1F4D32;
+            transform: translateY(-3px);
+        }
+
+        /* Section de notre équipe */
+        .team {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            background-color: #444; /* Fond gris clair */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 250px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            font-size: 1.4rem;
+            color: #2C6B3C;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            color: #f8f9fa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 20px;
+                width: 100%;
+            }
+
+            .btn-return {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+
+            .team {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>À propos de nous</h1>
+
+    <div class="content">
+        <h2>Notre Mission</h2>
+        <p>Notre bibliothèque s'engage à offrir un accès facile et gratuit à une large collection de livres et à promouvoir la culture à travers des événements communautaires. Nous croyons en la valeur de la lecture pour enrichir la vie de chaque individu.</p>
+
+        <h2>Nos Valeurs</h2>
+        <p>Nous prônons l'inclusivité, la diversité et l'accessibilité. Nous croyons que tout le monde mérite d'avoir un accès équitable à des ressources éducatives et culturelles, quel que soit son parcours.</p>
+
+        <h2>Nos Services</h2>
+        <p>Nous proposons une large gamme de livres, des espaces de lecture confortables, ainsi que des programmes éducatifs pour adultes et enfants. Notre équipe est disponible pour vous aider à trouver ce que vous cherchez et à rendre votre expérience agréable.</p>
+
+        <div class="team">
+            <div class="team-member">
+                <img src="https://via.placeholder.com/120" alt="Membre de l'équipe">
+                <h3>Marie Dupont</h3>
+                <p>Directrice</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/120" alt="Membre de l'équipe">
+                <h3>Paul Lefevre</h3>
+                <p>Responsable des collections</p>
+            </div>
+            <div class="team-member">
+                <img src="https://via.placeholder.com/120" alt="Membre de l'équipe">
+                <h3>Claire Bernard</h3>
+                <p>Chargée de communication</p>
+            </div>
+        </div>
+
+        <a href="/" class="btn-return">Retour à l'Accueil</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur votre compte{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Tableau de bord de l'utilisateur</h1>
+    </header>
+
+    <nav>
+        <ul class="nav-right">
+            <li class="logout"><a href="{{ path('home') }}">Déconnexion</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="{{ path('app_utilisateur_dashboard') }}" class="active">Accueil</a></li>
+                <li><a href="#">Mes emprunts</a></li>
+                <li><a href="#">Profil</a></li>
+            </ul>
+        </aside>
+
+        <main class="dashboard-content">
+            <h2>Bibliothèque</h2>
+
+            <!-- Search and Filter -->
+            <div class="search-filter">
+                <input type="text" id="search-bar" placeholder="Rechercher un livre...">
+                <select id="category-filter">
+                    <option value="">Toutes les catégories</option>
+                    <option value="BD et Mangas">BD et Mangas</option>
+                    <option value="non-fiction">Non-Fiction</option>
+                    <option value="Roman">Roman</option>
+                    <option value="Théâtre">Théâtre</option>
+                </select>
+                <button class="btn btn-search">Rechercher</button>
+            </div>
+
+            <div class="books-container" id="books-container">
+                {% for livre in livres %}
+                    <div class="book-card" data-category="{{ livre.categories }}" data-title="{{ livre.titre }}">
+                        <h3>{{ livre.titre }}</h3>
+                        <p>Auteur : {{ livre.auteur }}</p>
+                        <p>Catégorie : {{ livre.categories }}</p>
+                        <button>Voir plus</button>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchBar = document.getElementById('search-bar');
+            const categoryFilter = document.getElementById('category-filter');
+            const booksContainer = document.getElementById('books-container');
+
+            function filterBooks() {
+                const searchTerm = searchBar.value.toLowerCase();
+                const selectedCategory = categoryFilter.value.toLowerCase();
+                const books = booksContainer.querySelectorAll('.book-card');
+
+                books.forEach(book => {
+                    const title = book.getAttribute('data-title').toLowerCase();
+                    const category = book.getAttribute('data-category').toLowerCase();
+
+                    const matchesSearch = title.includes(searchTerm);
+                    const matchesCategory = selectedCategory === '' || category === selectedCategory;
+
+                    if (matchesSearch && matchesCategory) {
+                        book.style.display = 'block';
+                    } else {
+                        book.style.display = 'none';
+                    }
+                });
+            }
+
+            searchBar.addEventListener('input', filterBooks);
+            categoryFilter.addEventListener('change', filterBooks);
+        });
+    </script>
+{% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+        .dashboard-container {
+            display: flex;
+            min-height: calc(100vh - 70px); 
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin-right: 15px;
+        }
+
+        .nav-right {
+            margin-left: auto;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #4CAF50;
+            padding: 20px;
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #45a049;
+        }
+
+        .sidebar ul li.active a {
+            background-color: #45a049;
+        }
+
+        .dashboard-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .dashboard-content h2 {
+            color: #4CAF50;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-filter input, .search-filter select, .search-filter button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .book-card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #4CAF50;
+        }
+
+        .book-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .book-card button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .book-card button:hover {
+            background-color: #45a049;
+        }
+
+        .sidebar ul li.logout a {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .sidebar ul li.logout a:hover {
+            background-color: #d32f2f;
+        }
+
+        .btn {
+            border: none;
+        }
+
+        .btn-search {
+        background-color: #4CAF50;
+        color: white;f
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        }
+
+        .btn-search:hover {
+            background-color: #45a049;
+        }
+    </style>
+{% endblock %}
+
